@@ -1,17 +1,21 @@
 jobs:
   build:
     docker:
-      - image: 'circleci/node:10'
+      - image: 'cimg/base:stable'
     steps:
-      - run: echo "This job can overlap"
+      - run: echo "Build started"
+      - run: sleep 10
+      - run: echo "Build finished"
   deploy:
     docker:
-      - image: 'circleci/node:10'
+      - image: 'cimg/base:stable'
     steps:
       - queue/until_front_of_line:
           only-on-branch: main
-          time: '60'
-      - run: echo "This job will not overlap"
+          time: '300'
+      - run: echo "Deploy started"
+      - run: sleep 60
+      - run: echo "Deploy completed"
 orbs:
   queue: eddiewebb/queue@volatile
 version: 2.1
