@@ -9,8 +9,8 @@ jobs:
       - image: 'circleci/node:10'
     steps:
       - queue/until_front_of_line:
-          only-on-branch: master
-          time: '10'
+          only-on-branch: main
+          time: '60'
       - run: echo "This job will not overlap"
 orbs:
   queue: eddiewebb/queue@volatile
